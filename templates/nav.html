@@ -1,0 +1,27 @@
+{% load static %}
+<nav class="navbar navbar-expand-lg fixed-top" id="main-navbar">
+    <div class="container">
+
+        <a class="navbar-brand pr-5" style="border-right: 1px solid #efefef;" href="{% url "players" %}">
+            <img src="{% static "img/logo.png" %}" height="45" class="d-inline-block align-top"/>
+        </a>
+
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+
+                <li class="nav-item nav-icon">
+                    <a href="{% url "players" %}">
+                        Lista de Jugadores
+                    </a>
+                </li>
+
+                <li class="nav-item nav-icon">
+                    <a href="{% url "players" %}">
+                        Jugadores coincidentes
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
