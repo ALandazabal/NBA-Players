@@ -9,6 +9,7 @@
     <div class="container">
         <div class="row">
             <h1 class="mt-5">Tabla de jugadores</h1>
+
             <table class="table table-hover">
                 <thead>
                   <tr>
@@ -19,31 +20,17 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>Mark</td>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                  </tr>
-                  <tr>
-                    <td>Jacob</td>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                  </tr>
-                  <tr>
-                    <td>Larry the Bird</td>
-                    <td>Thornton</td>
-                    <td>Larry the Bird</td>
-                    <td>@twitter</td>
-                  </tr>
+                    {% for player in players_data.values %}
+                        <tr>
+                            <td>{{player.first_name}}</td>
+                            <td>{{player.last_name}}</td>
+                            <td>{{player.h_in}}</td>
+                            <td>{{player.h_meters}}</td>
+                        </tr>
+                    {% endfor %}
                 </tbody>
             </table>
 
-            <!-- <h1>Players Card!!!</h1>
-            {% for player in players_data.values %}
-                {% include "player_card.html" %}
-            {% endfor %} -->
         </div>
     </div>
 
