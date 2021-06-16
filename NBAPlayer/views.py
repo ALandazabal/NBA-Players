@@ -18,8 +18,9 @@ def hello_world(request):
 def players_list(request):
     """Return a greeting"""
 
-    url = 'https://mach-eight.uc.r.appspot.com/'
-    r = requests.get(url, timeout=20)
-    print(r.json())
+    """ url = 'https://mach-eight.uc.r.appspot.com/'
+    r = requests.get(url, timeout=20) """
+    #print(r.json())
 
-    return render(request, 'feed.html', { 'players': r.json() })
+    #return render(request, 'feed.html', { 'players_data': r.json() })
+    return render(request, 'feed.html')
