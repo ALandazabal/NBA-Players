@@ -49,6 +49,7 @@ $(document).ready(function() {
 
 });
 
+
 // Load data of players
 function loadData() {
 
