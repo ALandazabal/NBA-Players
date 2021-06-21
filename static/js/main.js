@@ -49,6 +49,48 @@ $(document).ready(function() {
 
 });
 
+// Obtiene los valores de cada celda
+function calculate() {
+
+    let inchesQuantity = parseInt(document.getElementById("inches-quantity").value)
+    console.log(typeof inchesQuantity)
+
+    let minPlayerHeight = playersList.reduce(function(prev, curr) {
+                                return prev.h_in < curr.h_in ? prev : curr;
+                            });
+    console.log(typeof parseInt(minPlayerHeight.h_in))
+
+    if( inchesQuantity < parseInt(minPlayerHeight.h_in) )
+        console.log('La cantidad ingresada es menor a la altura del jugador más pequeño.')
+    else{
+
+        let playersCouple = playersList.map((obj,i,plist) => {
+            let names = ""
+
+            if( i < plist.length - 1 ){
+                
+                let sumHeight = parseInt(obj.h_in) + parseInt(plist[i+1].h_in)
+                console.log(sumHeight)
+                
+                if( sumHeight == inchesQuantity )
+                    names = obj.first_name+" y "+plist[i+1].first_name
+            }
+            
+            return names
+        })
+        
+        playersCouple = playersCouple.filter( names => {
+            console.log(names)
+            return names
+        })
+        console.log(playersCouple)
+
+        //console.log('Un jugador coincidente es: '+minPlayerHeight.first_name+' '+minPlayerHeight.last_name)
+
+    }
+
+
+}
 
 // Load data of players
 function loadData() {
