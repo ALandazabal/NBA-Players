@@ -64,7 +64,9 @@ function calculate() {
         console.log('La cantidad ingresada es menor a la altura del jugador más pequeño.')
     else{
 
-        let playersCouple = playersList.map((obj,i,plist) => {
+
+        // Only return if matching with the next
+        /* let playersCouple = playersList.map((obj,i,plist) => {
             let names = ""
 
             if( i < plist.length - 1 ){
@@ -82,8 +84,29 @@ function calculate() {
         playersCouple = playersCouple.filter( names => {
             console.log(names)
             return names
-        })
+        })*/
+
+        let playersCouple = []
+
+        for( i = 0; i < playersList.length-1; i++){
+            for( j = i+1; j < playersList.length; j++){
+                let sumHeight = parseInt(playersList[i].h_in) + parseInt(playersList[j].h_in)
+
+                if( sumHeight == inchesQuantity ){
+                    let names = playersList[i].first_name+" "+playersList[i].last_name+"("+playersList[i].h_in+") y "+playersList[j].first_name+" "+playersList[j].last_name+"("+playersList[j].h_in+")"
+                    playersCouple.push(names)
+                }
+            }
+        }
         console.log(playersCouple)
+
+        let matchingPlayersText = ''
+
+        for( let i=0; i < playersCouple.length; i++){
+            matchingPlayersText +='<li class="list-group-item">'+playersCouple[i]+'</li>'
+        }
+
+        document.getElementById('matching-players-list').innerHTML = matchingPlayersText
 
         //console.log('Un jugador coincidente es: '+minPlayerHeight.first_name+' '+minPlayerHeight.last_name)
 
