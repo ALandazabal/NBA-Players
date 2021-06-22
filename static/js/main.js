@@ -23,15 +23,12 @@ $(document).ready(function() {
         
         var button = $(event.relatedTarget) // Button that triggered the modal
         var recipient = button.data('whatever') // Extract info from data-* attributes
-        //recipient = recipient.replace(/'/g, '"').replace("\"", "'").replace(/\"$/,"'")
         recipient = JSON.stringify(recipient.replace(/'/g, '"'))
 
         recipientObj = JSON.parse(JSON.parse(recipient))
-        //console.log(recipientObj)
 
         let eqHeight = playersList.filter(player => player.h_in == recipientObj.h_in)
         eqHeight = eqHeight.filter(player => player.first_name != recipientObj.first_name)
-        //console.log(eqHeight)
 
         let equalPlayerText = ''
 
@@ -64,28 +61,6 @@ function calculate() {
         console.log('La cantidad ingresada es menor a la altura del jugador más pequeño.')
     else{
 
-
-        // Only return if matching with the next
-        /* let playersCouple = playersList.map((obj,i,plist) => {
-            let names = ""
-
-            if( i < plist.length - 1 ){
-                
-                let sumHeight = parseInt(obj.h_in) + parseInt(plist[i+1].h_in)
-                console.log(sumHeight)
-                
-                if( sumHeight == inchesQuantity )
-                    names = obj.first_name+" y "+plist[i+1].first_name
-            }
-            
-            return names
-        })
-        
-        playersCouple = playersCouple.filter( names => {
-            console.log(names)
-            return names
-        })*/
-
         let playersCouple = []
 
         for( i = 0; i < playersList.length-1; i++){
@@ -107,8 +82,6 @@ function calculate() {
         }
 
         document.getElementById('matching-players-list').innerHTML = matchingPlayersText
-
-        //console.log('Un jugador coincidente es: '+minPlayerHeight.first_name+' '+minPlayerHeight.last_name)
 
     }
 
@@ -137,7 +110,6 @@ function comparer(index) {
        var valA = getCellValue(a, index),
        valB = getCellValue(b, index);
        var compareData = $.isNumeric(valA) && $.isNumeric(valB) ? valA - valB : valA.localeCompare(valB);
-       //console.log(compareData)
        return compareData
     };
 }
@@ -145,7 +117,6 @@ function comparer(index) {
 // Obtiene los valores de cada celda
 function getCellValue(row, index) {
     var getValue = $(row).children('td').eq(index).html();
-    //console.log(getValue)
     return getValue
 }
  

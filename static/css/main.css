@@ -65,3 +65,11 @@ table tr th {
 .desc:after {
     content: " ↓";
 }
+
+/* Footer */
+.footer{
+    text-align: center;
+    padding: 1em;
+    background-color: #00408d;
+    color: white;
+}
