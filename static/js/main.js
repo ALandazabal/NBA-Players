@@ -61,9 +61,13 @@ function calculate() {
                             });
     console.log(typeof parseInt(minPlayerHeight.h_in))
 
-    if( inchesQuantity < parseInt(minPlayerHeight.h_in) )
-        console.log('La cantidad ingresada es menor a la altura del jugador más pequeño.')
-    else{
+    let matchingPlayersText = ''
+    
+    if( inchesQuantity < parseInt(minPlayerHeight.h_in) ){
+        //console.log('La cantidad ingresada es menor a la altura del jugador más pequeño.')
+        alert('La cantidad ingresada es menor a la altura del jugador más pequeño.')
+        //matchingPlayersText +='<li class="list-group-item">La cantidad ingresada es menor a la altura del jugador más pequeño.</li>'
+    }else{
 
         let playersCouple = []
 
@@ -79,16 +83,16 @@ function calculate() {
         }
         console.log(playersCouple)
 
-        let matchingPlayersText = ''
+        
 
         for( let i=0; i < playersCouple.length; i++){
             matchingPlayersText +='<li class="list-group-item">'+playersCouple[i]+'</li>'
         }
 
-        document.getElementById('matching-players-list').innerHTML = matchingPlayersText
+        
 
     }
-
+    document.getElementById('matching-players-list').innerHTML = matchingPlayersText
 
 }
 

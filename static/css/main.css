@@ -3,7 +3,6 @@ html, body {
     height: 100%;
     width: 100%;
     font-family: 'Roboto', sans-serif;
-    margin: 5em 0 0;
 }
 
 #auth-container {
@@ -47,7 +46,7 @@ html, body {
 
 
 /* Table styles */
-table tr th {
+/* table tr th {
     cursor: pointer;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -65,7 +64,7 @@ table tr th {
   
 .desc:after {
     content: " ↓";
-}
+} */
 
 /* Footer */
 .footer{
