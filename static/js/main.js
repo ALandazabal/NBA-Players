@@ -62,9 +62,10 @@ function calculate() {
                             });
     console.log(typeof parseInt(minPlayerHeight.h_in))
 
-    if( inchesQuantity < parseInt(minPlayerHeight.h_in) )
-        console.log('La cantidad ingresada es menor a la altura del jugador más pequeño.')
-    else{
+    if( inchesQuantity < parseInt(minPlayerHeight.h_in) ){
+        let msg = 'La cantidad ingresada es menor a la altura del jugador más pequeño: '+minPlayerHeight.first_name+' '+minPlayerHeight.last_name+' ('+minPlayerHeight.h_in+' pulgadas)'
+        alert(msg)
+    }else{
 
         let playersCouple = []
 
@@ -82,9 +83,12 @@ function calculate() {
 
         let matchingPlayersText = ''
 
-        for( let i=0; i < playersCouple.length; i++){
-            matchingPlayersText +='<li class="list-group-item">'+playersCouple[i]+'</li>'
-        }
+        if( playersCouple.length == 0 )
+            matchingPlayersText = '<li class="list-group-item">No hay jugadores que sumen esta cantidad exactamente</li>'
+        else
+            for( let i=0; i < playersCouple.length; i++){
+                matchingPlayersText +='<li class="list-group-item">'+playersCouple[i]+'</li>'
+            }
 
         document.getElementById('matching-players-list').innerHTML = matchingPlayersText
 
