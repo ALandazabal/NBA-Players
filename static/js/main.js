@@ -18,10 +18,6 @@ $(document).ready(function() {
         setIcon($(this), this.asc);
     });
 
-    // Table pagination
-    $('#data-table-players').DataTable();
-    $('.dataTables_length').addClass('bs-select');
-
     // Show modal
     $('#exampleModal').on('show.bs.modal', function (event) {
         
@@ -46,7 +42,12 @@ $(document).ready(function() {
         var modal = $(this)
         modal.find('.modal-title').text('Jugador ' + recipientObj.first_name + ' ' + recipientObj.last_name + ' ('+recipientObj.h_in+' pulgadas)')
         modal.find('#eq-player-list')[0].innerHTML = equalPlayerText
-    })
+    });
+
+    
+    // Table pagination
+    $('#data-table-players').DataTable();
+    $('.dataTables_length').addClass('bs-select');
 
 });
 
@@ -61,13 +62,9 @@ function calculate() {
                             });
     console.log(typeof parseInt(minPlayerHeight.h_in))
 
-    let matchingPlayersText = ''
-    
-    if( inchesQuantity < parseInt(minPlayerHeight.h_in) ){
-        //console.log('La cantidad ingresada es menor a la altura del jugador más pequeño.')
-        alert('La cantidad ingresada es menor a la altura del jugador más pequeño.')
-        //matchingPlayersText +='<li class="list-group-item">La cantidad ingresada es menor a la altura del jugador más pequeño.</li>'
-    }else{
+    if( inchesQuantity < parseInt(minPlayerHeight.h_in) )
+        console.log('La cantidad ingresada es menor a la altura del jugador más pequeño.')
+    else{
 
         let playersCouple = []
 
@@ -83,16 +80,16 @@ function calculate() {
         }
         console.log(playersCouple)
 
-        
+        let matchingPlayersText = ''
 
         for( let i=0; i < playersCouple.length; i++){
             matchingPlayersText +='<li class="list-group-item">'+playersCouple[i]+'</li>'
         }
 
-        
+        document.getElementById('matching-players-list').innerHTML = matchingPlayersText
 
     }
-    document.getElementById('matching-players-list').innerHTML = matchingPlayersText
+
 
 }
 
