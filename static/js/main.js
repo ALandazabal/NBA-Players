@@ -18,6 +18,10 @@ $(document).ready(function() {
         setIcon($(this), this.asc);
     });
 
+    // Table pagination
+    $('#data-table-players').DataTable();
+    $('.dataTables_length').addClass('bs-select');
+
     // Show modal
     $('#exampleModal').on('show.bs.modal', function (event) {
         
