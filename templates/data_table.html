@@ -1,0 +1,24 @@
+<dvi id="data-table" class="col-sm-12">
+    <h1 class="mt-5">Tabla de jugadores</h1>
+
+    <table id="data-table-players" class="table table-hover">
+        <thead>
+            <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">Altura en metros</th>
+            <th scope="col">Altura en pulgadas</th>
+            </tr>
+        </thead>
+        <tbody id="tbody-table" >
+            {% for player in players_data.values %}
+                <tr data-toggle="modal" data-target="#exampleModal" data-whatever="{{player}}">
+                    <td>{{player.first_name}}</td>
+                    <td>{{player.last_name}}</td>
+                    <td>{{player.h_meters}}</td>
+                    <td>{{player.h_in}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</dvi>

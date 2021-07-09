@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block head_content %}
+    <title>NBA Players</title>
+{% endblock%}
+
+{% block container %}
+
+    <div class="container">
+        <div class="row">
+            {% include "data_table.html" %}
+
+            {% include "matching_players.html" %}
+
+
+        </div>
+    </div>
+
+    {% include "player_detail.html" %}
+
+{% endblock %}
