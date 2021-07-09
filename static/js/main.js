@@ -67,48 +67,25 @@ function calculate() {
                         });
 
     table.fnClearTable();
-    //table.rows().delete();
 
     if( inchesQuantity < parseInt(minPlayerHeight.h_in) ){
         let msg = 'La cantidad ingresada es menor a la altura del jugador más pequeño: '+minPlayerHeight.first_name+' '+minPlayerHeight.last_name+' ('+minPlayerHeight.h_in+' pulgadas)'
         alert(msg)
     }else{
 
-        //let playersCouple = []
-
         for( i = 0; i < playersList.length-1; i++){
             for( j = i+1; j < playersList.length; j++){
                 let sumHeight = parseInt(playersList[i].h_in) + parseInt(playersList[j].h_in)
 
                 if( sumHeight == inchesQuantity ){
-                    //let names = playersList[i].first_name+" "+playersList[i].last_name+"("+playersList[i].h_in+") y "+playersList[j].first_name+" "+playersList[j].last_name+"("+playersList[j].h_in+")"
-                    //let names = "<td>"+playersList[i].first_name+" "+playersList[i].last_name+"("+playersList[i].h_in+")</td><td>"+playersList[j].first_name+" "+playersList[j].last_name+"("+playersList[j].h_in+")</td>"
-                    //playersCouple.push(names)
 
                     let player1 = playersList[i].first_name+" "+playersList[i].last_name+"("+playersList[i].h_in+")"
                     let player2 = playersList[j].first_name+" "+playersList[j].last_name+"("+playersList[j].h_in+")"
                     table.fnAddData( [ player1, player2 ] );
-                    /* table
-                    .row.add( [ player1, player2 ] )
-                    .draw()
-                    .node(); */
+
                 }
             }
         }
-        //console.log(playersCouple)
-
-        /* let matchingPlayersText = ''
-
-        if( playersCouple.length == 0 ){
-            //matchingPlayersText = '<li class="list-group-item">No hay jugadores que sumen esta cantidad exactamente</li>'
-            alert('No hay jugadores que sumen esta cantidad exactamente')
-        }else
-            for( let i=0; i < playersCouple.length; i++){
-                //matchingPlayersText +='<li class="list-group-item">'+playersCouple[i]+'</li>'
-                matchingPlayersText +="<tr>"+playersCouple[i]+"</tr>"
-            } */
-
-        //document.getElementById('matching-players-list-tbody').innerHTML = matchingPlayersText
  
         if ( ! table.data().any() ) {
             alert('No hay jugadores que sumen esta cantidad exactamente')
@@ -129,14 +106,13 @@ function loadData() {
         let rowString = rows[i].dataset.whatever.replace(/(?![A-Za-z])'(?![A-Za-z])/g, '"')
         rowString = rowString.replace(/{'/g, '{"')
         rowString = JSON.stringify(rowString.replace(/(\s)'/g, ' "'))
-        //console.log(rowString)
         playersList.push(JSON.parse(JSON.parse(rowString)))
     }
 
 
 }
  
-// Para comparar los valores de la tabla entre sí
+//Compare values in the table between them
 function comparer(index) {
     return function(a, b) {
        var valA = getCellValue(a, index),
@@ -146,13 +122,13 @@ function comparer(index) {
     };
 }
  
-// Obtiene los valores de cada celda
+// Get values in each cell
 function getCellValue(row, index) {
     var getValue = $(row).children('td').eq(index).html();
     return getValue
 }
  
- // Muestra gráficamente qué ordenamiento se está aplicando
+ // Graphically shows which ordering is being applied
  function setIcon(element, asc) {
     $("th").each(function(index) {
        $(this).removeClass("sorting");
