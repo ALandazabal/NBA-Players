@@ -1,7 +1,7 @@
-<dvi id="matching-players" class="col-sm-12 mt-2 mb-2">
+<dvi id="matching-players" class="col-sm-12 mt-2 mb-3">
     <h1 class="mt-5">Jugadores coincidentes</h1>
 
-    <form class="form-inline">
+    <form class="form-inline  mb-2">
         <div class="form-group mx-sm-3 mb-2">
             <label for="inches-quantity">Por favor ingrese una cantidad de pulgadas: </label>
             <input type="number" class="form-control ml-3" id="inches-quantity" placeholder="Pulgadas" min="0" value="0">
@@ -9,6 +9,16 @@
         <button type="button" class="btn btn-primary mb-2" onclick="calculate()">Consultar jugadores</button>
     </form>
 
-    <ul id="matching-players-list" class="list-group list-group-flush text-center mt-2"></ul>
+    <!-- <ul id="matching-players-list" class="list-group list-group-flush text-center mt-2"></ul> -->
+    <table id="matching-players-list" class="table table-hover">
+        <thead>
+            <tr>
+            <th scope="col">Jugador 1(Altura en pulgadas)</th>
+            <th scope="col">Jugador 2(Altura en pulgadas)</th>
+            </tr>
+        </thead>
+        <tbody  id="matching-players-list-tbody">
+        </tbody>
+    </table>
     
 </dvi>

@@ -49,51 +49,74 @@ $(document).ready(function() {
     $('#data-table-players').DataTable();
     $('.dataTables_length').addClass('bs-select');
 
+    $('#matching-players-list').DataTable();
+
 });
 
-// Obtiene los valores de cada celda
+// Calculate and show matching players
 function calculate() {
 
+    console.time('t1')
+
+    let table = $('#matching-players-list').dataTable();
+
     let inchesQuantity = parseInt(document.getElementById("inches-quantity").value)
-    console.log(typeof inchesQuantity)
 
     let minPlayerHeight = playersList.reduce(function(prev, curr) {
-                                return prev.h_in < curr.h_in ? prev : curr;
-                            });
-    console.log(typeof parseInt(minPlayerHeight.h_in))
+                            return prev.h_in < curr.h_in ? prev : curr;
+                        });
+
+    table.fnClearTable();
+    //table.rows().delete();
 
     if( inchesQuantity < parseInt(minPlayerHeight.h_in) ){
         let msg = 'La cantidad ingresada es menor a la altura del jugador más pequeño: '+minPlayerHeight.first_name+' '+minPlayerHeight.last_name+' ('+minPlayerHeight.h_in+' pulgadas)'
         alert(msg)
     }else{
 
-        let playersCouple = []
+        //let playersCouple = []
 
         for( i = 0; i < playersList.length-1; i++){
             for( j = i+1; j < playersList.length; j++){
                 let sumHeight = parseInt(playersList[i].h_in) + parseInt(playersList[j].h_in)
 
                 if( sumHeight == inchesQuantity ){
-                    let names = playersList[i].first_name+" "+playersList[i].last_name+"("+playersList[i].h_in+") y "+playersList[j].first_name+" "+playersList[j].last_name+"("+playersList[j].h_in+")"
-                    playersCouple.push(names)
+                    //let names = playersList[i].first_name+" "+playersList[i].last_name+"("+playersList[i].h_in+") y "+playersList[j].first_name+" "+playersList[j].last_name+"("+playersList[j].h_in+")"
+                    //let names = "<td>"+playersList[i].first_name+" "+playersList[i].last_name+"("+playersList[i].h_in+")</td><td>"+playersList[j].first_name+" "+playersList[j].last_name+"("+playersList[j].h_in+")</td>"
+                    //playersCouple.push(names)
+
+                    let player1 = playersList[i].first_name+" "+playersList[i].last_name+"("+playersList[i].h_in+")"
+                    let player2 = playersList[j].first_name+" "+playersList[j].last_name+"("+playersList[j].h_in+")"
+                    table.fnAddData( [ player1, player2 ] );
+                    /* table
+                    .row.add( [ player1, player2 ] )
+                    .draw()
+                    .node(); */
                 }
             }
         }
-        console.log(playersCouple)
+        //console.log(playersCouple)
 
-        let matchingPlayersText = ''
+        /* let matchingPlayersText = ''
 
-        if( playersCouple.length == 0 )
-            matchingPlayersText = '<li class="list-group-item">No hay jugadores que sumen esta cantidad exactamente</li>'
-        else
+        if( playersCouple.length == 0 ){
+            //matchingPlayersText = '<li class="list-group-item">No hay jugadores que sumen esta cantidad exactamente</li>'
+            alert('No hay jugadores que sumen esta cantidad exactamente')
+        }else
             for( let i=0; i < playersCouple.length; i++){
-                matchingPlayersText +='<li class="list-group-item">'+playersCouple[i]+'</li>'
-            }
+                //matchingPlayersText +='<li class="list-group-item">'+playersCouple[i]+'</li>'
+                matchingPlayersText +="<tr>"+playersCouple[i]+"</tr>"
+            } */
 
-        document.getElementById('matching-players-list').innerHTML = matchingPlayersText
+        //document.getElementById('matching-players-list-tbody').innerHTML = matchingPlayersText
+ 
+        if ( ! table.data().any() ) {
+            alert('No hay jugadores que sumen esta cantidad exactamente')
+        }
 
     }
 
+    console.timeEnd('t1')
 
 }
 
