@@ -1,0 +1,1 @@
+web: gunicorn NBAPlayer.wsgi --log-file -
