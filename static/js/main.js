@@ -49,14 +49,14 @@ $(document).ready(function() {
     $('#data-table-players').DataTable();
     $('.dataTables_length').addClass('bs-select');
 
-    $('#matching-players-list').DataTable();
+    //$('#matching-players-list').DataTable();
 
 });
 
 // Calculate and show matching players
-function calculate() {
+function calculate2() {
 
-    console.time('t1')
+    //console.time('t1')
 
     let table = $('#matching-players-list').dataTable();
 
@@ -93,7 +93,52 @@ function calculate() {
 
     }
 
-    console.timeEnd('t1')
+    //console.timeEnd('t1')
+
+}
+
+// Calculate and show matching players without dataTable
+function calculate() {
+
+    let table = document.getElementById('matching-players-list-tbody')
+
+    let inchesQuantity = parseInt(document.getElementById("inches-quantity").value)
+
+    let minPlayerHeight = playersList.reduce(function(prev, curr) {
+                            return prev.h_in < curr.h_in ? prev : curr;
+                        });
+
+    let tableContent = ''
+    let quantityRows = 0
+
+    if( inchesQuantity < parseInt(minPlayerHeight.h_in) ){
+        let msg = 'La cantidad ingresada es menor a la altura del jugador más pequeño: '+minPlayerHeight.first_name+' '+minPlayerHeight.last_name+' ('+minPlayerHeight.h_in+' pulgadas)'
+        alert(msg)
+    }else{
+
+        for( i = 0; i < playersList.length-1; i++){
+            for( j = i+1; j < playersList.length; j++){
+                let sumHeight = parseInt(playersList[i].h_in) + parseInt(playersList[j].h_in)
+
+                if( sumHeight == inchesQuantity ){
+                    quantityRows ++
+                    let player1 = "<td>"+playersList[i].first_name+" "+playersList[i].last_name+"("+playersList[i].h_in+")</td>"
+                    let player2 = "<td>"+playersList[j].first_name+" "+playersList[j].last_name+"("+playersList[j].h_in+")</td>"
+                    tableContent += "<tr>"+player1+player2+"</tr>"
+                    //table.fnAddData( [ player1, player2 ] );
+
+                }
+            }
+        }
+ 
+        if ( quantityRows == 0 ) {
+            alert('No hay jugadores que sumen esta cantidad exactamente')
+        }
+
+        table.innerHTML = tableContent
+        document.getElementById('quantityRows').innerHTML = "Total de coincidencias: "+quantityRows
+
+    }
 
 }
 
